@@ -15,7 +15,7 @@ def verfuegbenachrichtigung1():
 
     # Schleife über alle Zeilen der Liste
     for zeile in range(1, liste.ListRows.Count + 1):
-        # Prüfen, ob Zelle in Liste mit X gefüllt ist
+        # Prüfen, ob Zelle in Liste mit X gefüllt ist - wurde mit einer Wenn-Funktion gelöst (Wenn z.B. Verfügbarkeitstermin in einer Woche erreicht ist)
         if liste.ListColumns("Aktualisieren").DataBodyRange(zeile).Value == liste.ListColumns(
                 "Zwecks Codierung").DataBodyRange(zeile).Value:
             # Mail versenden
