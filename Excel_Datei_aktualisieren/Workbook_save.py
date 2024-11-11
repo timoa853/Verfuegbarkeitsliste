@@ -12,7 +12,7 @@ xlsApp = win32com.client.Dispatch("Excel.Application")
 
 
 # Excel-Datei auswählen
-file_path = r"C:\Users\user\Desktop\Workflows\Verfuegbarkeitsliste\Ausfuehrende_Datei_Verfueg.xlsx"
+file_path = r"your\path\to\your\excel-file.xlsx"
 xlsWb = xlsApp.Workbooks.Open(file_path)
 
 # Überprüfen, ob der Name existiert
