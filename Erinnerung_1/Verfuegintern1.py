@@ -36,7 +36,7 @@ def verfuegbenachrichtigung1_2(baldaktualisieren, mailadresse):
     outlook_app = win32com.client.Dispatch("Outlook.Application")
     oMail = outlook_app.CreateItem(0)  # 0 bedeutet MailItem
 
-    # Mail formatieren
+    # Mail formatieren - Mailadresse wird aus Excel-Datei übernommen. Kann auch direkt in den Code implementiert werden
     oMail.To = mailadresse
     oMail.Subject = "Verfügbarkeitsliste bald aktualisieren"
     oMail.BodyFormat = 2  # 2 bedeutet olFormatHTML
