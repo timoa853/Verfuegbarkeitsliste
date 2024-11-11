@@ -6,7 +6,7 @@ def verfuegbenachrichtigung1():
     xlsApp.Visible = False
 
     # Excel-Datei auswählen
-    file_path = r"C:\Users\user\Desktop\Workflows\Verfuegbarkeitsliste\Ausfuehrende_Datei_Verfueg.xlsx"
+    file_path = r"C:\your\path\to\your\excel-file.xlsx"
     xlsWb = xlsApp.Workbooks.Open(file_path)
 
     # Referenz auf das Arbeitsblatt und die Liste erhalten
