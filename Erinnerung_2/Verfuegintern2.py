@@ -40,7 +40,7 @@ def verfuegbenachrichtigung2_2(baldaktualisieren, mailadresse):
     oMail.To = mailadresse
     oMail.Subject = "Bitte umgehend Verfügbarkeitsliste anpassen"
     oMail.BodyFormat = 2  # 2 bedeutet olFormatHTML
-    oMail.HTMLBody = "<br><br><b><div style=background-color:red><font color= white>Priorität: Hoch</font></div><br><br> Bitte Verfügbarkeitsliste schleunigst aktualisieren</b><br><br>Bitte in den nächsten Tagen prüfen und aktualisieren, sowie den Lieferanten des fehlenden Teiles kontaktieren, sofern kein neuer Liefertermin bekannt ist<br><br><b>Pfad: Allgemein_Server\\PREISLISTEN\\Jahr\\Preisliste_Master</b><br><br>Mit freundlichen Grüßen<br><br>DINO - Automatische Nachricht"
+    oMail.HTMLBody = "<br><br><b><div style=background-color:red><font color= white>Priorität: Hoch</font></div><br><br> Bitte Verfügbarkeitsliste schleunigst aktualisieren</b><br><br>Bitte in den nächsten Tagen prüfen und aktualisieren, sowie den Lieferanten des fehlenden Teiles kontaktieren, sofern kein neuer Liefertermin bekannt ist<br><br><br><br>Mit freundlichen Grüßen<br><br>DINO - Automatische Nachricht"
 
     oMail.Send()
 
