@@ -1,1 +1,1 @@
-"C:\Users\user\Desktop\Workflows\Verfuegbarkeitsliste\Workflowdateien\Erinnerung_2\Verfuegintern2.py"
+"C:\your\path\to\your\python-file.py"
