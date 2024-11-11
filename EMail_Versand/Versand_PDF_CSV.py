@@ -8,25 +8,25 @@ def email_spiel_preis_pdf():
     xlsApp.Visible = False
 
     # Excel-Datei auswählen
-    file_path = r"C:\Users\user\Desktop\Workflows\Verfuegbarkeitsliste\Ausfuehrende_Datei_Verfueg.xlsx"
+    file_path = r"C:\path\to\your\excelsheet.xlsx"
     xlsWb = xlsApp.Workbooks.Open(file_path)
 
     # PDF erstellen
     xlsWb.Sheets("Versand Verfüg").Activate()
-    datei_name = xlsWb.Sheets("Versand Verfüg").Range("U3").Value + xlsWb.Sheets("Versand Verfüg").Range("U2").Value + ".pdf"
+    datei_name = xlsWb.Sheets("Versand Verfüg").Range("U3").Value + xlsWb.Sheets("Versand Verfüg").Range("U2").Value + ".pdf" #Dateiname besteht zum Teil aus einer Excelzelle - das kann hier frei geändert werden
     xlsWb.Sheets("Versand Verfüg").Range("A1:H374").ExportAsFixedFormat(
         Type=0, Filename=datei_name, Quality=0, IncludeDocProperties=True, IgnorePrintAreas=False, OpenAfterPublish=False
-    )
+    ) #Range A1:H374 ist der Druckberech der in der PDF zu angezeigt wird. Der Rest wird ausgeblendet
 
     # Für CSV: Druckbereich kopieren
     temp_workbook = xlsApp.Workbooks.Add()
-    xlsWb.Sheets("Versand Verfüg").Range("A1:H374").Copy()
-    temp_workbook.Sheets(1).Range("A1").PasteSpecial(3)  # 3 entspricht xlPasteValues
+    xlsWb.Sheets("Versand Verfüg").Range("A1:H374").Copy() #Range A1:H374 ist der Druckberech der in die CSV übertragen wird
+    temp_workbook.Sheets(1).Range("A1").PasteSpecial(3)
     temp_workbook.Sheets(1).Range("C:C").NumberFormat = "0"  # Format der Spalte C auf Zahl setzen
 
     # Für CSV: temporäre Arbeitsmappe aktivieren und speichern
     temp_workbook.Activate()
-    csv_datei_name = xlsWb.Sheets("Versand Verfüg").Range("U3").Value + xlsWb.Sheets("Versand Verfüg").Range("U2").Value + ".csv"
+    csv_datei_name = xlsWb.Sheets("Versand Verfüg").Range("U3").Value + xlsWb.Sheets("Versand Verfüg").Range("U2").Value + ".csv" #Dateiname besteht zum Teil aus einer Excelzelle - das kann hier frei geändert werden
 
     # Unterdrücken der Meldung "Möchten Sie die Datei ersetzen"
     xlsApp.DisplayAlerts = False
@@ -42,15 +42,14 @@ def email_spiel_preis_pdf():
     outlook_mail_item = outlook_app.CreateItem(0)
     my_attachments = outlook_mail_item.Attachments
 
-    # E-Mail-Adressen in kleinere Gruppen aufteilen
+    # E-Mail-Adressen in kleinere Gruppen aufteilen - Bitte hier die korrekten E-Mail-Adressen eintragen
     alle_adressen = [
-        "presales@spiel-preis.de", "info@traptrecker.de", "tradesales@autoculture.co.uk", "abwicklung@babyonlineshop.de", "info@kleiner-bewegt.ch", "anna.shcherbakova@kramp.com",
-        "sales@gokartdaddy.co.uk", "service@edingershops.de", "info@gokarthof.de", "info@outdoorfun24.de", "martin.baumgartner@prillinger.at", "info@spielwaren-laumann.de",
-        "kundenservice@yourhealthfit.de", "email@ed-store.de", "hr@eilbote-online.de", "kw@eilbote-online.de", "matthias.kaserer@t-online.de", "info@hdv-immler.de", "info@yes1-trading.com",
-        "Simon.Schwaiger@aon.at", "wisedeals@t-online.de", "bleicher@sport-thieme.de", "verwaltung@dinocars.de", "eliottlehuede.pro@gmail.com","c.dieckmann@thofra.de",
+        "test1@testmail.de", "test2@testmail.de", "test3@testmail.de", "test4@testmail.de", "test5@testmail.de", "test6@testmail.de",
+        "test7@testmail.de", "test8@testmail.de", "test9@testmail.de", "test10@testmail.de", "test11@testmail.de", "test12@testmail.de",
+        "test13@testmail.de",
     ]
 
-    gruppen_groesse = 10  # Anzahl der Empfänger pro E-Mail
+    gruppen_groesse = 10  # Anzahl der Empfänger pro E-Mail, um sicherzustellen, dass auch alle E-Mails versandt werden
     adress_gruppen = [alle_adressen[i:i + gruppen_groesse] for i in range(0, len(alle_adressen), gruppen_groesse)]
 
     for gruppe in adress_gruppen:
@@ -59,7 +58,7 @@ def email_spiel_preis_pdf():
         my_attachments = outlook_mail_item.Attachments
 
         # Separate Zuweisungen
-        outlook_mail_item.To = "info@dinocars.de"
+        outlook_mail_item.To = "your-email-address@testmail.de" #Hauptempfänger ist die eigene E-Mail Adresse aus Datenschutzgründen
         outlook_mail_item.BCC = "; ".join(gruppe)  # BCC-Feld mit den E-Mail-Adressen der Gruppe
         outlook_mail_item.Subject = "Aktuelle Verfügbarkeitsliste"
         outlook_mail_item.BodyFormat = 2  # 2 entspricht olFormatHTML
@@ -71,7 +70,7 @@ def email_spiel_preis_pdf():
             Enclosed you will find our current availability list as PDF and CSV.<br>
             PLEASE FEEL FREE TO GIVE US FEEDBACK IF DATA IS NOT COMPLETELY DISPLAYED OR ERROR CODES ARE VISIBLE.<br><br><br>
             <i><b>Achtung, diese Nachricht wurde automatisch generiert | This message was genereted automatically</b></i><br><br>
-            Mit freundlichen Grüßen | With kind regards<br><br>Ihr Team von DINO CARS | Your DINO CARS Team
+            Mit freundlichen Grüßen | With kind regards
         """
 
         # Anhänge hinzufügen
