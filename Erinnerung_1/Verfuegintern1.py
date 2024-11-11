@@ -6,16 +6,16 @@ def verfuegbenachrichtigung1():
     xlsApp.Visible = False
 
     # Excel-Datei auswählen
-    file_path = r"C:\Users\user\Desktop\Workflows\Verfuegbarkeitsliste\Ausfuehrende_Datei_Verfueg.xlsx"
+    file_path = r"C:\path\to\your\excel-file.xlsx"
     xlsWb = xlsApp.Workbooks.Open(file_path)
 
     # Referenz auf das Arbeitsblatt und die Liste erhalten
     arbeitsblatt = xlsWb.Sheets("Versand Verfüg")
     liste = arbeitsblatt.ListObjects("Prf.Verfüg")
 
-    # Schleife über alle Zeilen der Liste
+    # Schleife über alle Zeilen der Liste - vergleicht aktuelles Datum mit dem mitgeteilten Verfügbarkeitstermin
     for zeile in range(1, liste.ListRows.Count + 1):
-        # Prüfen, ob Zelle in Liste mit X gefüllt ist
+        # Prüfen, ob Zelle in Liste mit X gefüllt ist - wurde mit einer Wenn-Funktion gelöst (Wenn z.B. Verfügbarkeitstermin in einer Woche erreicht ist)
         if liste.ListColumns("Baldaktualisieren").DataBodyRange(zeile).Value == liste.ListColumns(
                 "Zwecks Codierung").DataBodyRange(zeile).Value:
             # Mail versenden
@@ -40,7 +40,7 @@ def verfuegbenachrichtigung1_2(baldaktualisieren, mailadresse):
     oMail.To = mailadresse
     oMail.Subject = "Verfügbarkeitsliste bald aktualisieren"
     oMail.BodyFormat = 2  # 2 bedeutet olFormatHTML
-    oMail.HTMLBody = "<br><br><b><div style=background-color:yellow>Priorität: Mittel</div><br><br> Bitte Verfügbarkeitsliste aktualisieren</b><br><br>Bitte innerhalb einer Woche anpassen und Lieferanten kontaktieren sofern kein neuer Liefertermin bekannt ist<br><br><b>Pfad: Allgemein_Server\\PREISLISTEN\\Jahr\\Preisliste_Master</b><br><br>Mit freundlichen Grüßen<br><br>DINO - Automatische Nachricht"
+    oMail.HTMLBody = "<br><br><b><div style=background-color:yellow>Priorität: Mittel</div><br><br> Bitte Verfügbarkeitsliste aktualisieren</b><br><br>Bitte innerhalb einer Woche anpassen und Lieferanten kontaktieren sofern kein neuer Liefertermin bekannt ist<br><br><br><br>Mit freundlichen Grüßen<br><br>Automatische Nachricht"
 
     oMail.Send()
 
