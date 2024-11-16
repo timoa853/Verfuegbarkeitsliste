@@ -12,7 +12,7 @@ Weitere Funktionen:
 
 
 ACHTUNG - alle oben aufgelisteten Dateien müssen mit einer "einfachen Aufgabe" aus der Windows Aufgabenplanung abgerufen werden!
-Damit die Aufgaben auch im Hintergrund ausgeführt werden und der CMD ausgeblendet wird, muss unter dem Reiter "Aktionen"...
+Damit die Aufgaben auch im Hintergrund ausgeführt werden und das CMD-Fenster ausgeblendet wird, muss unter dem Reiter "Aktionen"...
 - innerhalb des Input Feldes von "Programm/Script" der Inhalt "wscript.exe" stehen.
 - unter "Argumente hinzufügen (optional)" der Pfad zur jeweiligen VBS-Datei stehen.
 - ein zeitlicher Trigger hinterlegt werden z.B. täglich um 14 Uhr
